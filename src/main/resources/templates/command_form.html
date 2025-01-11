@@ -4,9 +4,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Command Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            text-align: center; /* 중앙 정렬 */
+        }
+
+        hr {
+            margin: 20px auto;
+            width: 90%;
+            border: 1px solid #ccc;
+        }
+
+        h2 {
+            color: #4CAF50;
+            font-size: 1.5rem;
+            text-align: center; /* 중앙 정렬 */
+        }
+        p{
+            color: #4CAF50;
+            font-size: 1.5rem;
+            text-align: center; /* 중앙 정렬 */
+        }
+
+        form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-size: 1rem;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .checkbox-group div {
+            margin-bottom: 10px;
+        }
+
+        .checkbox-group label {
+            font-size: 1rem;
+        }
+
+        .result {
+            background-color: #fff;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .result h2 {
+            margin-top: 0;
+        }
+
+        .result p {
+            font-size: 1.2rem;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
 <h1>마인크래프트 명령어 생성기</h1>
+<hr>
+<h2>다이아 마검 명령어 생성기</h2>
 
 <form action="/command/generate" method="post">
     <label for="sharpness">날카로움:</label>
@@ -37,12 +146,46 @@
 </form>
 
 <hr>
+<h2> 몹 죽이기 명령어 </h2>
+<form action="/command/kill" method="post">
+    <div>
+        <label>
+            <input type="checkbox" name="zombie" value="1"> Zombie
+        </label>
+    </div>
+    <div>
+        <label>
+            <input type="checkbox" name="skeleton" value="1"> Skeleton
+        </label>
+    </div>
+    <div>
+        <label>
+            <input type="checkbox" name="creeper" value="1"> Creeper
+        </label>
+    </div>
+    <div>
+        <label>
+            <input type="checkbox" name="spider" value="1"> Spider
+        </label>
+    </div>
+    <div>
+        <label>
+            <input type="checkbox" name="vindicator" value="1"> Vindicator
+        </label>
+    </div>
+    <div>
+        <label>
+            <input type="checkbox" name="pillager" value="1"> Pillager
+        </label>
+    </div>
+    <button type="submit">명령어 생성</button>
+</form>
 
 <!-- 결과 표시 -->
 <div>
     <h2>생성된 명령어:</h2>
     <p>
-        <strong>${command}</strong>
+        <strong th:text="${command != null ? command : '명령어가 생성되지 않았습니다.'}"></strong>
     </p>
 </div>
 </body>
