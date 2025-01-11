@@ -12,6 +12,19 @@
             background-color: #f4f4f9;
             color: #333;
         }
+        .container {
+            height: 200px;
+            position: relative;
+            border: 3px solid green;
+        }
+
+        .vertical-center {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+        }
 
         header {
             background-color: #4CAF50;
@@ -185,8 +198,31 @@
 <div>
     <h2>생성된 명령어:</h2>
     <p>
-        <strong th:text="${command != null ? command : '명령어가 생성되지 않았습니다.'}"></strong>
+        <strong id="generated-command" th:text="${command != null ? command : '명령어가 생성되지 않았습니다.'}">
+            명령어가 생성되지 않았습니다.
+        </strong>
+        <button onclick="copyCommand()">Copy!</button>
     </p>
 </div>
+
+<script>
+    function copyCommand() {
+        const commandElement = document.getElementById('generated-command'); // ID로 요소 찾기
+        const commandText = commandElement.textContent || commandElement.innerText; // 텍스트 내용 가져오기
+
+        if (commandText && commandText !== '명령어가 생성되지 않았습니다.') {
+            navigator.clipboard.writeText(commandText) // 클립보드에 텍스트 복사
+                .then(() => {
+                    alert('명령어가 복사되었습니다!');
+                })
+                .catch(err => {
+                    console.error('복사 실패:', err);
+                });
+        } else {
+            alert('복사할 명령어가 없습니다.');
+        }
+    }
+</script>
 </body>
+
 </html>
