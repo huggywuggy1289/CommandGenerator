@@ -36,7 +36,7 @@
         h1 {
             margin: 0;
             font-size: 2.5rem;
-            text-align: center; /* 중앙 정렬 */
+            text-align: center;
         }
 
         hr {
@@ -48,12 +48,13 @@
         h2 {
             color: #4CAF50;
             font-size: 1.5rem;
-            text-align: center; /* 중앙 정렬 */
+            text-align: center;
         }
-        p{
+
+        p {
             color: #4CAF50;
             font-size: 1.5rem;
-            text-align: center; /* 중앙 정렬 */
+            text-align: center;
         }
 
         form {
@@ -130,7 +131,7 @@
 <hr>
 <h2>다이아 마검 명령어 생성기</h2>
 
-<form action="/command/generate" method="post">
+<form action="/command/generate" method="post" onsubmit="generateCommand(event)">
     <label for="sharpness">날카로움:</label>
     <input type="number" id="sharpness" name="sharpness" min="0" max="255" value="0"><br>
 
@@ -160,7 +161,7 @@
 
 <hr>
 <h2> 몹 죽이기 명령어 </h2>
-<form action="/command/kill" method="post">
+<form action="/command/kill" method="post" onsubmit="generateKillCommand(event)">
     <div>
         <label>
             <input type="checkbox" name="zombie" value="1"> Zombie
@@ -198,20 +199,53 @@
 <div>
     <h2>생성된 명령어:</h2>
     <p>
-        <strong id="generated-command" th:text="${command != null ? command : '명령어가 생성되지 않았습니다.'}">
-            명령어가 생성되지 않았습니다.
-        </strong>
+        <strong id="generated-command">명령어가 생성되지 않았습니다.</strong>
         <button onclick="copyCommand()">Copy!</button>
     </p>
 </div>
 
 <script>
+    function generateCommand(event) {
+        event.preventDefault();  // 폼 제출 기본 동작 방지
+
+        // 명령어 생성 로직 (예시)
+        const sharpness = document.getElementById("sharpness").value;
+        const smite = document.getElementById("smite").value;
+        const baneOfArthropods = document.getElementById("baneOfArthropods").value;
+        const knockback = document.getElementById("knockback").value;
+        const fireAspect = document.getElementById("fireAspect").value;
+        const looting = document.getElementById("looting").value;
+        const sweepingEdge = document.getElementById("sweepingEdge").value;
+        const unbreaking = document.getElementById("unbreaking").value;
+
+        // 명령어 형식 작성 (간단한 예시)
+        const command = `give @p minecraft:diamond_sword{Enchantments:[{id:"sharpness",lvl:${sharpness}},{id:"smite",lvl:${smite}},{id:"bane_of_arthropods",lvl:${baneOfArthropods}},{id:"knockback",lvl:${knockback}},{id:"fire_aspect",lvl:${fireAspect}},{id:"looting",lvl:${looting}},{id:"sweeping",lvl:${sweepingEdge}},{id:"unbreaking",lvl:${unbreaking}}]}`;
+
+        // 생성된 명령어 표시
+        document.getElementById('generated-command').textContent = command;
+    }
+
+    function generateKillCommand(event) {
+        event.preventDefault();  // 폼 제출 기본 동작 방지
+
+        // 선택된 체크박스를 확인하여 명령어 생성
+        let command = "kill @e[type=!player";
+        const checkboxes = document.querySelectorAll("input[type=checkbox]:checked");
+
+        checkboxes.forEach((checkbox) => {
+            command += `,type=${checkbox.name}`;
+        });
+
+        command += "]";
+        document.getElementById('generated-command').textContent = command;
+    }
+
     function copyCommand() {
-        const commandElement = document.getElementById('generated-command'); // ID로 요소 찾기
-        const commandText = commandElement.textContent || commandElement.innerText; // 텍스트 내용 가져오기
+        const commandElement = document.getElementById('generated-command');
+        const commandText = commandElement.textContent || commandElement.innerText;
 
         if (commandText && commandText !== '명령어가 생성되지 않았습니다.') {
-            navigator.clipboard.writeText(commandText) // 클립보드에 텍스트 복사
+            navigator.clipboard.writeText(commandText)
                 .then(() => {
                     alert('명령어가 복사되었습니다!');
                 })
@@ -224,5 +258,4 @@
     }
 </script>
 </body>
-
 </html>
