@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Command Generator</title>
+</head>
+<body>
+<h1>마인크래프트 명령어 생성기</h1>
+
+<form action="/command/generate" method="post">
+    <label for="sharpness">날카로움:</label>
+    <input type="number" id="sharpness" name="sharpness" min="0" max="255" value="0"><br>
+
+    <label for="smite">강타:</label>
+    <input type="number" id="smite" name="smite" min="0" max="255" value="0"><br>
+
+    <label for="baneOfArthropods">살충:</label>
+    <input type="number" id="baneOfArthropods" name="baneOfArthropods" min="0" max="255" value="0"><br>
+
+    <label for="knockback">밀치기:</label>
+    <input type="number" id="knockback" name="knockback" min="0" max="255" value="0"><br>
+
+    <label for="fireAspect">발화:</label>
+    <input type="number" id="fireAspect" name="fireAspect" min="0" max="255" value="0"><br>
+
+    <label for="looting">약탈:</label>
+    <input type="number" id="looting" name="looting" min="0" max="255" value="0"><br>
+
+    <label for="sweepingEdge">휩쓸기:</label>
+    <input type="number" id="sweepingEdge" name="sweepingEdge" min="0" max="255" value="0"><br>
+
+    <label for="unbreaking">내구성:</label>
+    <input type="number" id="unbreaking" name="unbreaking" min="0" max="255" value="0"><br>
+
+    <button type="submit">명령어 생성</button>
+</form>
+
+<hr>
+
+<!-- 결과 표시 -->
+<div>
+    <h2>생성된 명령어:</h2>
+    <p>
+        <strong>${command}</strong>
+    </p>
+</div>
+</body>
+</html>
