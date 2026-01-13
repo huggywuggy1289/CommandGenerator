@@ -10,7 +10,7 @@ public class CommandGenerator {
     public String generate(EnchantmentRequest request) {
         StringBuilder enchantments = new StringBuilder();
 
-        // 0이 아닌 값만 추가하도록 조건 처리
+        // 1.20.5+ 방식: "minecraft:인챈트ID":레벨 형식으로 구성
         if (request.getSharpness() != null && request.getSharpness() > 0) {
             enchantments.append("\"minecraft:sharpness\":").append(request.getSharpness()).append(",");
         }
@@ -36,13 +36,11 @@ public class CommandGenerator {
             enchantments.append("\"minecraft:unbreaking\":").append(request.getUnbreaking()).append(",");
         }
 
-        // 마지막 ',' 제거
         if (enchantments.length() > 0) {
-            enchantments.deleteCharAt(enchantments.length() - 1); // 끝의 쉼표 제거
+            enchantments.deleteCharAt(enchantments.length() - 1); // 마지막 쉼표 제거
         }
 
-        // 최종 명령어 문자열 생성 (형식 수정)
-        return String.format("/give @p diamond_sword[enchantments={levels:{%s}}]", enchantments.toString());
+        return String.format("/give @p diamond_sword[enchantments={%s}]", enchantments.toString());
     }
 
     // 몬스터 죽이는 명령어 생성
