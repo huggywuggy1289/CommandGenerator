@@ -15,8 +15,6 @@ import org.springframework.ui.Model;
 public class CommandGeneratorController {
 
     private final CommandGenerator commandGenerator;
-
-    // CommandGenerator 서비스 주입
     @Autowired
     public CommandGeneratorController(CommandGenerator commandGenerator) {
         this.commandGenerator = commandGenerator;
