@@ -36,7 +36,7 @@ public class CommandGeneratorController {
         return "command_form";
     }
 
-    @RequestMapping(value = "/kill", method = RequestMethod.POST)
+    @RequestMapping(value = "/command/kill", method = RequestMethod.POST)
     public String generateMonsterCommand(@ModelAttribute MonsterRequest monsterRequest, Model model) {
         // CommandGenerator 서비스 호출
         String command = commandGenerator.generateMonsterCommand(monsterRequest);
