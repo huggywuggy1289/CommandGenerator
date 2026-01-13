@@ -4,7 +4,7 @@
 | `몹 죽이기`             | 몬스터 개체수 늘리기                              |
 | `효과 부여`             | 필요한 포션 추가하기                              |
 <pr>
-# ⚔️ 마인크래프트 마검/몬스터 명령어 생성기
+<h2># ⚔️ 마인크래프트 마검/몬스터 명령어 생성기</h2>
 
 [![Website](https://img.shields.io/badge/Website-Click_Here-blue?style=for-the-badge&logo=spring&logoColor=white)](https://commandgenerator-production.up.railway.app/)
 
