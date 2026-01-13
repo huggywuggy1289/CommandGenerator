@@ -15,6 +15,11 @@ import org.springframework.ui.Model;
 public class CommandGeneratorController {
 
     private final CommandGenerator commandGenerator;
+
+    @GetMapping("/")
+    public String index() {
+        return "redirect:/command/form";
+    }
     @Autowired
     public CommandGeneratorController(CommandGenerator commandGenerator) {
         this.commandGenerator = commandGenerator;
