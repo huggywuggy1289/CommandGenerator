@@ -8,6 +8,7 @@ public class MonsterRequest {
     private Integer spider;
     private Integer vindicator;
     private Integer pillager;
+    private Integer item;
 
     public Integer getZombie(){
         return zombie;
@@ -45,5 +46,7 @@ public class MonsterRequest {
     public void setPillager(Integer pillager){
         this.pillager = pillager;
     }
+    public Integer getItem(){ return item; }
+    public void setItem(Integer item){this.item = item;}
 
 }
