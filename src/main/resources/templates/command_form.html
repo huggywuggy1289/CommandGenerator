@@ -193,12 +193,36 @@
         <h2>몹 제거</h2>
         <form action="/command/kill" method="post">
             <div class="mob-grid">
-                <label><input type="checkbox" name="zombie"> Zombie</label>
-                <label><input type="checkbox" name="skeleton"> Skeleton</label>
-                <label><input type="checkbox" name="creeper"> Creeper</label>
-                <label><input type="checkbox" name="spider"> Spider</label>
-                <label><input type="checkbox" name="vindicator"> Vindicator</label>
-                <label><input type="checkbox" name="pillager"> Pillager</label>
+                <label>
+                    <input type="radio" name="monsterType" value="ZOMBIE">
+                    Zombie
+                </label>
+
+                <label>
+                    <input type="radio" name="monsterType" value="SKELETON">
+                    Skeleton
+                </label>
+
+                <label>
+                    <input type="radio" name="monsterType" value="CREEPER">
+                    Creeper
+                </label>
+
+                <label>
+                    <input type="radio" name="monsterType" value="SPIDER">
+                    Spider
+                </label>
+
+                <label>
+                    <input type="radio" name="monsterType" value="VINDICATOR">
+                    Vindicator
+                </label>
+
+                <label>
+                    <input type="radio" name="monsterType" value="PILLAGER">
+                    Pillager
+                </label>
+
             </div>
             <button type="submit">💀 몹 제거 명령어</button>
         </form>
