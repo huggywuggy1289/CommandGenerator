@@ -49,7 +49,7 @@ public class CommandGenerator {
             enchantments.deleteCharAt(enchantments.length() - 1); // 마지막 쉼표 제거
         }
 
-        return String.format("/give @p" + swordType.getMinecraftId() + "[enchantments={%s}]", enchantments.toString());
+        return String.format("/give @p " + swordType.getMinecraftId() + "[enchantments={%s}]", enchantments.toString());
     }
 
     // 몬스터 죽이는 명령어 생성
