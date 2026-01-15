@@ -1,52 +1,15 @@
 package com.command_generator.dto;
 
-// 좀비, 스켈레톤, 크리퍼, 거미, 변명자, 약탈자
+import com.command_generator.entity.enums.MonsterType;
+
 public class MonsterRequest {
-    private Integer zombie;
-    private Integer skeleton;
-    private Integer creeper;
-    private Integer spider;
-    private Integer vindicator;
-    private Integer pillager;
-    private Integer item;
+    private MonsterType monsterType;
 
-    public Integer getZombie(){
-        return zombie;
+    public MonsterType getMonsterType() {
+        return monsterType;
     }
-    public void setZombie(Integer zombie){
-        this.zombie = zombie;
-    }
-    public Integer getSkeleton(){
-        return skeleton;
-    }
-    public void setSkeleton(Integer skeleton){
-        this.skeleton = skeleton;
-    }
-    public Integer getCreeper(){
-        return creeper;
-    }
-    public void setCreeper(Integer creeper){
-        this.creeper = creeper;
-    }
-    public Integer getSpider(){
-        return spider;
-    }
-    public void setSpider(Integer spider){
-        this.spider = spider;
-    }
-    public Integer getVindicator(){
-        return vindicator;
-    }
-    public void setVindicator(Integer vindicator){
-        this.vindicator = vindicator;
-    }
-    public Integer getPillager(){
-        return pillager;
-    }
-    public void setPillager(Integer pillager){
-        this.pillager = pillager;
-    }
-    public Integer getItem(){ return item; }
-    public void setItem(Integer item){this.item = item;}
 
+    public void setMonsterType(MonsterType monsterType) {
+        this.monsterType = monsterType;
+    }
 }
