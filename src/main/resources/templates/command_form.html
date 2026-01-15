@@ -16,53 +16,43 @@
 
         body {
             margin: 0;
-            font-family: "Pretendard", "Noto Sans KR", sans-serif;
+            font-family: "Pretendard", sans-serif;
             background: var(--aqua-bg);
             color: var(--dark-blue);
         }
 
         header {
             text-align: center;
-            padding: 40px 0;
+            padding: 30px 0;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 15px;
         }
 
-        header img {
-            width: 50px;
-            height: 50px;
-            image-rendering: pixelated; /* 마크 느낌 살리기 */
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.2rem;
-            color: var(--dark-blue);
-            text-shadow: 2px 2px var(--aqua-light);
-        }
+        header img { width: 50px; image-rendering: pixelated; }
 
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             padding: 0 20px 50px;
             display: grid;
-            grid-template-columns: 1.5fr 1fr;
-            gap: 30px;
+            grid-template-columns: 1.8fr 1fr;
+            gap: 25px;
         }
 
         .card {
             background: var(--white);
             border-radius: 20px;
-            padding: 30px;
+            padding: 25px;
             box-shadow: 0 10px 25px rgba(26, 188, 156, 0.1);
             border: 1px solid var(--aqua-light);
+            margin-bottom: 25px;
         }
 
         .card h2 {
             margin-top: 0;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: var(--aqua-dark);
             display: flex;
             align-items: center;
@@ -71,67 +61,66 @@
             padding-bottom: 10px;
         }
 
-        .card h2 img {
-            width: 24px;
-            image-rendering: pixelated;
+        /* === 검 종류 선택 (Radio) === */
+        .sword-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+            margin: 20px 0;
         }
 
-        /* === 마검 입력 그리드 === */
+        .sword-option {
+            border: 2px solid var(--aqua-light);
+            border-radius: 12px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.9rem;
+        }
+
+        .sword-option img { width: 32px; image-rendering: pixelated; }
+
+        .sword-option input { display: none; }
+
+        /* 체크된 상태 스타일 */
+        .sword-option:has(input:checked) {
+            border-color: var(--aqua-primary);
+            background: var(--aqua-light);
+            transform: scale(1.05);
+        }
+
+        /* === 인챈트 그리드 === */
         .enchant-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-            margin: 20px 0;
+            gap: 12px;
+            margin-top: 15px;
         }
 
         .input-group label {
             font-size: 0.85rem;
-            font-weight: 600;
             color: #7f8c8d;
-            margin-bottom: 5px;
+            margin-bottom: 4px;
             display: block;
         }
 
         input[type="number"] {
             width: 100%;
-            padding: 10px;
-            border-radius: 10px;
-            border: 2px solid var(--aqua-light);
-            transition: border-color 0.3s;
+            padding: 8px;
+            border-radius: 8px;
+            border: 1px solid var(--aqua-light);
             outline: none;
-        }
-
-        input[type="number"]:focus {
-            border-color: var(--aqua-primary);
-        }
-
-        /* === 몹 선택 라디오 === */
-        .mob-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin: 20px 0;
-        }
-
-        .mob-option {
-            background: var(--aqua-bg);
-            padding: 10px;
-            border-radius: 10px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: background 0.2s;
-        }
-
-        .mob-option:hover {
-            background: var(--aqua-light);
         }
 
         /* === 버튼 === */
         button {
             width: 100%;
-            padding: 14px;
+            padding: 15px;
             border-radius: 12px;
             border: none;
             cursor: pointer;
@@ -140,100 +129,118 @@
             color: white;
             background: var(--aqua-primary);
             box-shadow: 0 4px 0 var(--aqua-dark);
-            transition: all 0.1s;
+            margin-top: 20px;
         }
 
-        button:active {
-            transform: translateY(3px);
-            box-shadow: 0 1px 0 var(--aqua-dark);
-        }
-
-        /* === 결과창 (Sticky) === */
-        .result-section {
-            position: sticky;
-            top: 20px;
-        }
+        button:active { transform: translateY(2px); box-shadow: 0 2px 0 var(--aqua-dark); }
 
         .command-box {
             background: #2d3436;
             color: #00d2d3;
             border-radius: 12px;
-            padding: 20px;
+            padding: 15px;
             word-break: break-all;
             font-family: 'Consolas', monospace;
-            min-height: 100px;
-            margin: 20px 0;
-            border-left: 5px solid var(--aqua-primary);
+            min-height: 80px;
+            margin: 15px 0;
+            font-size: 0.9rem;
         }
 
-        .copy-btn {
-            background: var(--dark-blue);
-            box-shadow: 0 4px 0 #1a252f;
-        }
-
-        @media (max-width: 800px) {
-            .container { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 850px) { .container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="https://minecraft.wiki/images/Diamond_Sword_JE3_BE3.png" alt="Sword">
-    <h1>마인크래프트 명령어 생성기</h1>
+    <img src="https://minecraft.wiki/images/Enchanted_Book_JE2_BE2.gif" alt="icon">
+    <h1>마인크래프트 마검 생성기 v2</h1>
 </header>
 
 <div class="container">
-    <div class="card">
-        <h2><img src="https://minecraft.wiki/images/Diamond_Sword_JE3_BE3.png"> 다이아 마검 강화</h2>
+    <div class="left-panel">
         <form action="/command/generate" method="post">
-            <div class="enchant-grid">
-                <div class="input-group"><label>날카로움</label><input type="number" name="sharpness" placeholder="0-255"></div>
-                <div class="input-group"><label>강타</label><input type="number" name="smite" placeholder="0-255"></div>
-                <div class="input-group"><label>살충</label><input type="number" name="baneOfArthropods" placeholder="0-255"></div>
-                <div class="input-group"><label>밀치기</label><input type="number" name="knockback" placeholder="0-255"></div>
-                <div class="input-group"><label>발화</label><input type="number" name="fireAspect" placeholder="0-255"></div>
-                <div class="input-group"><label>약탈</label><input type="number" name="looting" placeholder="0-255"></div>
-                <div class="input-group"><label>휩쓸기</label><input type="number" name="sweepingEdge" placeholder="0-255"></div>
-                <div class="input-group"><label>내구성</label><input type="number" name="unbreaking" placeholder="0-255"></div>
+            <div class="card">
+                <h2>⚔️ 베이스 아이템 선택</h2>
+                <div class="sword-selector">
+                    <label class="sword-option">
+                        <input type="radio" name="swordType" value="NETHERITE_SWORD">
+                        <img src="https://minecraft.wiki/images/Netherite_Sword_JE2_BE2.png">
+                        네더라이트
+                    </label>
+                    <label class="sword-option">
+                        <input type="radio" name="swordType" value="DIAMOND_SWORD" checked>
+                        <img src="https://minecraft.wiki/images/Diamond_Sword_JE3_BE3.png">
+                        다이아몬드
+                    </label>
+                    <label class="sword-option">
+                        <input type="radio" name="swordType" value="IRON_SWORD">
+                        <img src="https://minecraft.wiki/images/Iron_Sword_JE2_BE2.png">
+                        철검
+                    </label>
+                    <label class="sword-option">
+                        <input type="radio" name="swordType" value="GOLDEN_SWORD">
+                        <img src="https://minecraft.wiki/images/Golden_Sword_JE3_BE2.png">
+                        황금검
+                    </label>
+                    <label class="sword-option">
+                        <input type="radio" name="swordType" value="STONE_SWORD">
+                        <img src="https://minecraft.wiki/images/Stone_Sword_JE2_BE2.png">
+                        돌검
+                    </label>
+                    <label class="sword-option">
+                        <input type="radio" name="swordType" value="WOODEN_SWORD">
+                        <img src="https://minecraft.wiki/images/Wooden_Sword_JE2_BE2.png">
+                        나무 검
+                    </label>
+                </div>
+
+                <h2>✨ 인챈트 설정</h2>
+                <div class="enchant-grid">
+                    <div class="input-group"><label>날카로움 (Sharpness)</label><input type="number" name="sharpness" min="0" max="255"></div>
+                    <div class="input-group"><label>강타 (Smite)</label><input type="number" name="smite" min="0" max="255"></div>
+                    <div class="input-group"><label>살충 (Bane of Art.)</label><input type="number" name="baneOfArthropods" min="0" max="255"></div>
+                    <div class="input-group"><label>밀치기 (Knockback)</label><input type="number" name="knockback" min="0" max="255"></div>
+                    <div class="input-group"><label>발화 (Fire Aspect)</label><input type="number" name="fireAspect" min="0" max="255"></div>
+                    <div class="input-group"><label>약탈 (Looting)</label><input type="number" name="looting" min="0" max="255"></div>
+                    <div class="input-group"><label>휩쓸기 (Sweeping Edge)</label><input type="number" name="sweepingEdge" min="0" max="255"></div>
+                    <div class="input-group"><label>내구성 (Unbreaking)</label><input type="number" name="unbreaking" min="0" max="255"></div>
+                </div>
+                <button type="submit">🔥 마검 명령어 생성</button>
             </div>
-            <button type="submit">⚔️ 마검 명령어 생성</button>
         </form>
 
-        <h2 style="margin-top:40px;"><img src="https://minecraft.wiki/images/Zombie_Head_JE2_BE2.png"> 몹 제거 섹션</h2>
-        <form action="/command/kill" method="post">
-            <div class="mob-grid">
-                <label class="mob-option"><input type="radio" name="monsterType" value="ZOMBIE"> Zombie</label>
-                <label class="mob-option"><input type="radio" name="monsterType" value="SKELETON"> Skeleton</label>
-                <label class="mob-option"><input type="radio" name="monsterType" value="CREEPER"> Creeper</label>
-                <label class="mob-option"><input type="radio" name="monsterType" value="SPIDER"> Spider</label>
-            </div>
-            <button type="submit" style="background: #e67e22; box-shadow: 0 4px 0 #d35400;">💀 몹 제거 명령어</button>
-        </form>
+        <div class="card">
+            <h2>💀 몹 제거</h2>
+            <form action="/command/kill" method="post">
+                <div class="mob-grid">
+                    <label class="mob-option"><input type="radio" name="monsterType" value="ZOMBIE"> Zombie</label>
+                    <label class="mob-option"><input type="radio" name="monsterType" value="SKELETON"> Skeleton</label>
+                    <label class="mob-option"><input type="radio" name="monsterType" value="CREEPER"> Creeper</label>
+                    <label class="mob-option"><input type="radio" name="monsterType" value="SPIDER"> Spider</label>
+                </div>
+                <button type="submit" style="background: #e67e22; box-shadow: 0 4px 0 #d35400;">💀 명령어 생성</button>
+            </form>
+        </div>
     </div>
 
-    <div class="result-section">
-        <div class="card">
-            <h2><img src="https://minecraft.wiki/images/Book_and_Quill_JE2_BE2.png"> 생성된 명령어</h2>
+    <div class="right-panel">
+        <div class="card" style="position: sticky; top: 20px;">
+            <h2>📝 생성된 명령어</h2>
             <div id="generated-command" class="command-box"
-                 th:text="${command != null ? command : '옵션을 선택하고 버튼을 눌러주세요.'}">
-                옵션을 선택하고 버튼을 눌러주세요.
+                 th:text="${command != null ? command : '아이템과 옵션을 선택해주세요.'}">
+                아이템과 옵션을 선택해주세요.
             </div>
-            <button class="copy-btn" onclick="copyCommand()">📋 클립보드 복사</button>
+            <button onclick="copyCommand()" style="background: var(--dark-blue); box-shadow: 0 4px 0 #1a252f;">📋 복사하기</button>
         </div>
     </div>
 </div>
 
 <script>
     function copyCommand() {
-        const el = document.getElementById("generated-command");
-        const text = el.innerText;
-        if (!text || text.includes("선택하고")) {
-            alert("먼저 명령어를 생성해주세요!");
-            return;
-        }
+        const text = document.getElementById("generated-command").innerText;
+        if(text.includes("선택해주세요")) return alert("명령어를 먼저 생성하세요!");
         navigator.clipboard.writeText(text);
-        alert("성공적으로 복사되었습니다!");
+        alert("클립보드에 복사되었습니다!");
     }
 </script>
 
