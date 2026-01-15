@@ -2,7 +2,10 @@ package com.command_generator.service;
 
 import com.command_generator.dto.EnchantmentRequest;
 import com.command_generator.dto.MonsterRequest;
+import com.command_generator.dto.SwordRequest;
 import com.command_generator.entity.enums.MonsterType;
+import com.command_generator.entity.enums.SwordType;
+import com.fasterxml.jackson.databind.SequenceWriter;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -10,6 +13,11 @@ public class CommandGenerator {
 
     public String generate(EnchantmentRequest request) {
         StringBuilder enchantments = new StringBuilder();
+
+        SwordType swordType = request.getSwordType();
+        if (swordType == null) {
+            swordType = SwordType.DIAMOND_SWORD;
+        }
 
         // 1.20.5+ 방식: "minecraft:인챈트ID":레벨 형식으로 구성
         if (request.getSharpness() != null && request.getSharpness() > 0) {
@@ -41,7 +49,7 @@ public class CommandGenerator {
             enchantments.deleteCharAt(enchantments.length() - 1); // 마지막 쉼표 제거
         }
 
-        return String.format("/give @p diamond_sword[enchantments={%s}]", enchantments.toString());
+        return String.format("/give @p" + swordType.getMinecraftId() + "[enchantments={%s}]", enchantments.toString());
     }
 
     // 몬스터 죽이는 명령어 생성
