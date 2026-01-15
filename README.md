@@ -1,11 +1,18 @@
-| **유형 분류**      | **보완**                                              |
-|-------------------|---------------------------------------------------------|
-| `마검명령어`            | 무기용 아이템 개수 늘리기                         |
-| `몹 죽이기`             | 몬스터 개체수 늘리기                              |
-| `효과 부여`             | 필요한 포션 추가하기                              |
-<pr>
-<h2># ⚔️ 마인크래프트 마검/몬스터 명령어 생성기</h2>
+## ⚔️ 마인크래프트 마검 / 몬스터 명령어 생성기
 
-[![Website](https://img.shields.io/badge/Website-Click_Here-blue?style=for-the-badge&logo=spring&logoColor=white)](https://commandgenerator-production.up.railway.app/)
+<div align="center">
 
-> 마인크래프트 1.20.6 상위 버전용 커스텀 마검과 몬스터 킬 명령어를 생성하는 웹 서비스입니다.(업데이트중)
+### 🌐 공식 웹사이트  
+[👉 https://commandgenerator-production.up.railway.app/](https://commandgenerator-production.up.railway.app/)
+
+<br/>
+
+[![Website](https://img.shields.io/badge/OPEN%20SERVICE-Command%20Generator-4CAF50?style=for-the-badge&logo=spring&logoColor=white)](https://commandgenerator-production.up.railway.app/)
+
+</div>
+
+---
+
+> **Minecraft 1.20.6** 이상  
+> 커스텀 마검 및 몬스터 제거 명령어를 손쉽게 생성하는 웹 서비스입니다.  
+> *(현재 기능 확장 및 개선 진행 중)*
