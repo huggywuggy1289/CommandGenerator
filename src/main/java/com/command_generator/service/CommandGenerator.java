@@ -2,6 +2,7 @@ package com.command_generator.service;
 
 import com.command_generator.dto.EnchantmentRequest;
 import com.command_generator.dto.MonsterRequest;
+import com.command_generator.entity.enums.MonsterType;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -45,34 +46,12 @@ public class CommandGenerator {
 
     // 몬스터 죽이는 명령어 생성
     public String generateMonsterCommand(MonsterRequest monsterRequest) {
-        StringBuilder monsters = new StringBuilder();
 
-        if (monsterRequest.getZombie() != null && monsterRequest.getZombie() > 0) {
-            monsters.append("minecraft:zombie,");
+        MonsterType type = monsterRequest.getMonsterType();
+        if (type == null) {
+            return "몬스터를 선택하세요.";
         }
-        if (monsterRequest.getSkeleton() != null && monsterRequest.getSkeleton() > 0) {
-            monsters.append("minecraft:skeleton,");
-        }
-        if (monsterRequest.getCreeper() != null && monsterRequest.getCreeper() > 0) {
-            monsters.append("minecraft:creeper,");
-        }
-        if (monsterRequest.getSpider() != null && monsterRequest.getSpider() > 0) {
-            monsters.append("minecraft:spider,");
-        }
-        if (monsterRequest.getVindicator() != null && monsterRequest.getVindicator() > 0) {
-            monsters.append("minecraft:vindicator,");
-        }
-        if (monsterRequest.getPillager() != null && monsterRequest.getPillager() > 0) {
-            monsters.append("minecraft:pillager,");
-        }
-
-        // 마지막 ',' 제거
-        if (monsters.length() > 0) {
-            monsters.deleteCharAt(monsters.length() - 1); // 끝의 쉼표 제거
-        }
-
-        // 몬스터 이름이 추가된 명령어 생성
-        return String.format("/kill @e[type=%s]", monsters.toString());
+        return "/kill @e[type=" + type.getMinecraftId() + "]";
     }
 
 }
