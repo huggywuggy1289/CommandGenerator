@@ -1,228 +1,233 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
+    <title>마인크래프트 명령어 생성기</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Command Generator</title>
+
     <style>
+        :root {
+            --green: #4CAF50;
+            --dark: #2c3e50;
+            --bg: #f5f7fa;
+            --card: #ffffff;
+            --border: #e0e0e0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
-        }
-        .container {
-            height: 100px;
-            position: relative;
-            border: 3px solid green;
-        }
-
-        .vertical-center {
-            margin: 0;
-            position: absolute;
-            top: 50%;
-            -ms-transform: translateY(-50%);
-            transform: translateY(-50%);
-        }
-
-        header {
-            background-color: #4CAF50;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
+            font-family: "Pretendard", Arial, sans-serif;
+            background: var(--bg);
+            color: var(--dark);
         }
 
         h1 {
+            text-align: center;
+            padding: 20px 0;
             margin: 0;
-            font-size: 2.5rem;
-            text-align: center; /* 중앙 정렬 */
         }
 
-        hr {
-            margin: 20px auto;
-            width: 90%;
-            border: 1px solid #ccc;
-        }
-
-        h2 {
-            color: #4CAF50;
-            font-size: 1.5rem;
-            text-align: center; /* 중앙 정렬 */
-        }
-        p{
-            color: #4CAF50;
-            font-size: 1.5rem;
-            text-align: center; /* 중앙 정렬 */
-        }
-
-        form {
-            background-color: white;
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            margin: 20px auto;
-            width: 80%;
-            max-width: 600px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            color: var(--green);
+            text-align: center;
+        }
+
+        /* === 마검 입력 === */
+        .enchant-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
         }
 
         label {
+            font-size: 0.9rem;
+            margin-bottom: 4px;
             display: block;
-            margin: 10px 0 5px;
-            font-size: 1rem;
         }
 
         input[type="number"] {
             width: 100%;
             padding: 8px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 1rem;
-        }
-
-        button[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            font-size: 1rem;
-            cursor: pointer;
-            border-radius: 4px;
-            width: 100%;
-            transition: background-color 0.3s;
-        }
-
-        button[type="submit"]:hover {
-            background-color: #45a049;
-        }
-
-        .checkbox-group div {
-            margin-bottom: 10px;
-        }
-
-        .checkbox-group label {
-            font-size: 1rem;
-        }
-
-        .result {
-            background-color: #fff;
-            padding: 20px;
-            margin: 20px auto;
             border-radius: 8px;
-            width: 80%;
-            max-width: 600px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border);
+            text-align: center;
         }
 
-        .result h2 {
-            margin-top: 0;
+        /* === 몹 체크 === */
+        .mob-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 10px;
         }
 
-        .result p {
-            font-size: 1.2rem;
-            color: #555;
+        .mob-grid label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.95rem;
+        }
+
+        /* === 버튼 === */
+        button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #4CAF50, #2ecc71);
+            transition: transform 0.15s, box-shadow 0.15s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+
+        /* === 결과 === */
+        .result {
+            position: sticky;
+            top: 20px;
+            text-align: center;
+        }
+
+        .command-box {
+            background: #f0f3f6;
+            border-radius: 8px;
+            padding: 15px;
+            word-break: break-all;
+            font-family: monospace;
+            margin-top: 10px;
+        }
+
+        .copy-btn {
+            background: #34495e;
+            margin-top: 10px;
+        }
+
+        .copy-btn:hover {
+            background: #2c3e50;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-<h1>마인크래프트 명령어 생성기</h1>
-<hr>
-<h2>다이아 마검 명령어 생성기</h2>
 
-<form action="/command/generate" method="post">
-    <label for="sharpness">날카로움:</label>
-    <input type="number" id="sharpness" name="sharpness" min="0" max="255" value="0"><br>
+<h1>🗡 마인크래프트 명령어 생성기</h1>
 
-    <label for="smite">강타:</label>
-    <input type="number" id="smite" name="smite" min="0" max="255" value="0"><br>
+<div class="container">
 
-    <label for="baneOfArthropods">살충:</label>
-    <input type="number" id="baneOfArthropods" name="baneOfArthropods" min="0" max="255" value="0"><br>
+    <!-- 좌측: 입력 -->
+    <div class="card">
+        <h2>다이아 마검</h2>
+        <form action="/command/generate" method="post">
+            <div class="enchant-grid">
+                <div>
+                    <label>날카로움</label>
+                    <input type="number" name="sharpness" min="0" max="255">
+                </div>
+                <div>
+                    <label>강타</label>
+                    <input type="number" name="smite" min="0" max="255">
+                </div>
+                <div>
+                    <label>살충</label>
+                    <input type="number" name="baneOfArthropods" min="0" max="255">
+                </div>
+                <div>
+                    <label>밀치기</label>
+                    <input type="number" name="knockback" min="0" max="255">
+                </div>
+                <div>
+                    <label>발화</label>
+                    <input type="number" name="fireAspect" min="0" max="255">
+                </div>
+                <div>
+                    <label>약탈</label>
+                    <input type="number" name="looting" min="0" max="255">
+                </div>
+                <div>
+                    <label>휩쓸기</label>
+                    <input type="number" name="sweepingEdge" min="0" max="255">
+                </div>
+                <div>
+                    <label>내구성</label>
+                    <input type="number" name="unbreaking" min="0" max="255">
+                </div>
+            </div>
+            <button type="submit">⚔ 마검 명령어 생성</button>
+        </form>
 
-    <label for="knockback">밀치기:</label>
-    <input type="number" id="knockback" name="knockback" min="0" max="255" value="0"><br>
+        <hr>
 
-    <label for="fireAspect">발화:</label>
-    <input type="number" id="fireAspect" name="fireAspect" min="0" max="255" value="0"><br>
-
-    <label for="looting">약탈:</label>
-    <input type="number" id="looting" name="looting" min="0" max="255" value="0"><br>
-
-    <label for="sweepingEdge">휩쓸기:</label>
-    <input type="number" id="sweepingEdge" name="sweepingEdge" min="0" max="255" value="0"><br>
-
-    <label for="unbreaking">내구성:</label>
-    <input type="number" id="unbreaking" name="unbreaking" min="0" max="255" value="0"><br>
-
-    <button type="submit">명령어 생성</button>
-</form>
-
-<hr>
-<h2> 몹 죽이기 명령어 </h2>
-<form action="/command/kill" method="post">
-    <div>
-        <label>
-            <input type="checkbox" name="zombie" value="1"> Zombie
-        </label>
+        <h2>몹 제거</h2>
+        <form action="/command/kill" method="post">
+            <div class="mob-grid">
+                <label><input type="checkbox" name="zombie"> Zombie</label>
+                <label><input type="checkbox" name="skeleton"> Skeleton</label>
+                <label><input type="checkbox" name="creeper"> Creeper</label>
+                <label><input type="checkbox" name="spider"> Spider</label>
+                <label><input type="checkbox" name="vindicator"> Vindicator</label>
+                <label><input type="checkbox" name="pillager"> Pillager</label>
+            </div>
+            <button type="submit">💀 몹 제거 명령어</button>
+        </form>
     </div>
-    <div>
-        <label>
-            <input type="checkbox" name="skeleton" value="1"> Skeleton
-        </label>
-    </div>
-    <div>
-        <label>
-            <input type="checkbox" name="creeper" value="1"> Creeper
-        </label>
-    </div>
-    <div>
-        <label>
-            <input type="checkbox" name="spider" value="1"> Spider
-        </label>
-    </div>
-    <div>
-        <label>
-            <input type="checkbox" name="vindicator" value="1"> Vindicator
-        </label>
-    </div>
-    <div>
-        <label>
-            <input type="checkbox" name="pillager" value="1"> Pillager
-        </label>
-    </div>
-    <button type="submit">명령어 생성</button>
-</form>
 
-<!-- 결과 표시 -->
-<div>
-    <h2>생성된 명령어:</h2>
-    <p>
-        <strong id="generated-command" th:text="${command != null ? command : '명령어가 생성되지 않았습니다.'}">
-            명령어가 생성되지 않았습니다.
-        </strong>
-        <button onclick="copyCommand()">Copy!</button>
-    </p>
+    <!-- 우측: 결과 -->
+    <div class="card result">
+        <h2>생성된 명령어</h2>
+        <div id="generated-command" class="command-box"
+             th:text="${command != null ? command : '아직 생성된 명령어가 없습니다.'}">
+            아직 생성된 명령어가 없습니다.
+        </div>
+        <button class="copy-btn" onclick="copyCommand()">📋 복사</button>
+    </div>
+
 </div>
 
 <script>
     function copyCommand() {
-        const commandElement = document.getElementById('generated-command'); // ID로 요소 찾기
-        const commandText = commandElement.textContent || commandElement.innerText; // 텍스트 내용 가져오기
-
-        if (commandText && commandText !== '명령어가 생성되지 않았습니다.') {
-            navigator.clipboard.writeText(commandText) // 클립보드에 텍스트 복사
-                .then(() => {
-                    alert('명령어가 복사되었습니다!');
-                })
-                .catch(err => {
-                    console.error('복사 실패:', err);
-                });
-        } else {
-            alert('복사할 명령어가 없습니다.');
+        const el = document.getElementById("generated-command");
+        const text = el.innerText;
+        if (!text || text.includes("없습니다")) {
+            alert("복사할 명령어가 없습니다.");
+            return;
         }
+        navigator.clipboard.writeText(text);
+        alert("명령어 복사 완료!");
     }
 </script>
-</body>
 
+</body>
 </html>
