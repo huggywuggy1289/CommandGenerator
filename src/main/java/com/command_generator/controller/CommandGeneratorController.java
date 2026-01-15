@@ -38,11 +38,8 @@ public class CommandGeneratorController {
 
     @RequestMapping(value = "/command/kill", method = RequestMethod.POST)
     public String generateMonsterCommand(@ModelAttribute MonsterRequest monsterRequest, Model model) {
-        // CommandGenerator 서비스 호출
         String command = commandGenerator.generateMonsterCommand(monsterRequest);
-        // 모델에 command 추가
         model.addAttribute("command", command);
-        // 같은 폼을 다시 보여줌
         return "command_form";
     }
 }
