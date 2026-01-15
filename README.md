@@ -8,4 +8,4 @@
 
 [![Website](https://img.shields.io/badge/Website-Click_Here-blue?style=for-the-badge&logo=spring&logoColor=white)](https://commandgenerator-production.up.railway.app/)
 
-> 마인크래프트 1.21.1 버전용 커스텀 마검과 몬스터 킬 명령어를 생성하는 웹 서비스입니다.(업데이트중)
+> 마인크래프트 1.20.6 상위 버전용 커스텀 마검과 몬스터 킬 명령어를 생성하는 웹 서비스입니다.(업데이트중)
