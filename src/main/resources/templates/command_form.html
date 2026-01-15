@@ -146,13 +146,32 @@
             font-size: 0.9rem;
         }
 
+        /* 라디오 버튼 옆 텍스트 스타일 */
+        .mob-option span {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* 마우스를 올렸을 때 강조 */
+        .mob-option:hover {
+            background: var(--aqua-light);
+            border: 1px solid var(--aqua-primary);
+        }
+
+        /* 선택되었을 때의 스타일 (이미지가 없으므로 테두리로 강조) */
+        .mob-option:has(input:checked) {
+            background: var(--aqua-light);
+            border: 1.5px solid var(--aqua-primary);
+            color: var(--aqua-dark);
+        }
+
         @media (max-width: 850px) { .container { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
 
 <header>
-    <img src="https://minecraft.wiki/images/Enchanted_Book_JE2_BE2.gif" alt="icon">
+    <img src="https://minecraft.wiki/images/Diamond_Sword_JE3_BE3.png" alt="icon">
     <h1>마인크래프트 마검 생성기 v2</h1>
 </header>
 
@@ -213,10 +232,40 @@
             <h2>💀 몹 제거</h2>
             <form action="/command/kill" method="post">
                 <div class="mob-grid">
-                    <label class="mob-option"><input type="radio" name="monsterType" value="ZOMBIE"> Zombie</label>
-                    <label class="mob-option"><input type="radio" name="monsterType" value="SKELETON"> Skeleton</label>
-                    <label class="mob-option"><input type="radio" name="monsterType" value="CREEPER"> Creeper</label>
-                    <label class="mob-option"><input type="radio" name="monsterType" value="SPIDER"> Spider</label>
+                    <label class="mob-option">
+                        <input type="radio" name="monsterType" value="ZOMBIE" checked>
+                        <span>좀비</span>
+                    </label>
+
+                    <label class="mob-option">
+                        <input type="radio" name="monsterType" value="SKELETON">
+                        <span>스켈레톤</span>
+                    </label>
+
+                    <label class="mob-option">
+                        <input type="radio" name="monsterType" value="CREEPER">
+                        <span>크리퍼</span>
+                    </label>
+
+                    <label class="mob-option">
+                        <input type="radio" name="monsterType" value="SPIDER">
+                        <span>거미</span>
+                    </label>
+
+                    <label class="mob-option">
+                        <input type="radio" name="monsterType" value="ITEM">
+                        <span>드롭된 아이템</span>
+                    </label>
+
+                    <label class="mob-option">
+                        <input type="radio" name="monsterType" value="VINDICATOR">
+                        <span>변명자</span>
+                    </label>
+
+                    <label class="mob-option">
+                        <input type="radio" name="monsterType" value="PILLAGER">
+                        <span>약탈자</span>
+                    </label>
                 </div>
                 <button type="submit" style="background: #e67e22; box-shadow: 0 4px 0 #d35400;">💀 명령어 생성</button>
             </form>
